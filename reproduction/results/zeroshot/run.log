@@ -1,0 +1,92 @@
+================================================================
+ PanEcho zero-shot evaluation: EchoNet-Dynamic
+================================================================
+ Split             test (1,277 videos)
+ Seeds             0, 1, 2
+ Clips/video       4 x 16 frames
+ Precision         float16 (autocast)
+ Batch size        4
+ Bootstrap         1000 resamples
+ Output            reproduction\results\zeroshot
+ GPU               NVIDIA GeForce RTX 3070 Laptop GPU
+ CUDA              11.8
+ PyTorch           2.2.2+cu118
+----------------------------------------------------------------
+ Loading pretrained PanEcho...
+
+ Seed 0: test split (N=1,277, 3.1 min)
+----------------------------------------------------------------
+ Metric                               Value   95% CI
+ --------------------------------------------------------------
+ EF MAE (EF points)                    5.62   [5.32, 5.94]
+ EF RMSE (EF points)                   7.94   [7.47, 8.44]
+ EF R^2                               0.578   [0.527, 0.626]
+ EF bias (pred - true)                 1.53   [1.09, 1.96]
+ EF<40 AUROC, LV function head        0.920   [0.896, 0.941]
+ EF<40 AP,    LV function head        0.739   [0.674, 0.796]
+ EF<40 AUROC, predicted EF            0.917   [0.892, 0.940]
+ EF<40 AP,    predicted EF            0.737   [0.673, 0.795]
+
+ Seed 1: test split (N=1,277, 4.3 min)
+----------------------------------------------------------------
+ Metric                               Value   95% CI
+ --------------------------------------------------------------
+ EF MAE (EF points)                    5.60   [5.27, 5.93]
+ EF RMSE (EF points)                   7.88   [7.33, 8.43]
+ EF R^2                               0.584   [0.531, 0.631]
+ EF bias (pred - true)                 1.63   [1.24, 2.07]
+ EF<40 AUROC, LV function head        0.924   [0.903, 0.944]
+ EF<40 AP,    LV function head        0.738   [0.676, 0.798]
+ EF<40 AUROC, predicted EF            0.920   [0.897, 0.942]
+ EF<40 AP,    predicted EF            0.733   [0.668, 0.794]
+
+ Seed 2: test split (N=1,277, 4.9 min)
+----------------------------------------------------------------
+ Metric                               Value   95% CI
+ --------------------------------------------------------------
+ EF MAE (EF points)                    5.67   [5.38, 5.97]
+ EF RMSE (EF points)                   7.95   [7.44, 8.43]
+ EF R^2                               0.577   [0.524, 0.622]
+ EF bias (pred - true)                 1.54   [1.12, 1.97]
+ EF<40 AUROC, LV function head        0.922   [0.897, 0.942]
+ EF<40 AP,    LV function head        0.731   [0.664, 0.791]
+ EF<40 AUROC, predicted EF            0.920   [0.896, 0.942]
+ EF<40 AP,    predicted EF            0.726   [0.657, 0.787]
+
+ Summary: mean +/- SD across 3 seeds
+----------------------------------------------------------------
+ Metric                                   Mean +/- SD    seed 0    seed 1    seed 2
+ ----------------------------------------------------------------------------------
+ EF MAE (EF points)                     5.63 +/- 0.04      5.62      5.60      5.67
+ EF RMSE (EF points)                    7.93 +/- 0.04      7.94      7.88      7.95
+ EF R^2                               0.580 +/- 0.004     0.578     0.584     0.577
+ EF bias (pred - true)                  1.57 +/- 0.06      1.53      1.63      1.54
+ EF<40 AUROC, LV function head        0.922 +/- 0.002     0.920     0.924     0.922
+ EF<40 AP,    LV function head        0.736 +/- 0.004     0.739     0.738     0.731
+ EF<40 AUROC, predicted EF            0.919 +/- 0.002     0.917     0.920     0.920
+ EF<40 AP,    predicted EF            0.732 +/- 0.006     0.737     0.733     0.726
+
+ Complexity
+----------------------------------------------------------------
+ Hardware
+   GPU                                       NVIDIA GeForce RTX 3070 Laptop GPU
+   CUDA                                      11.8
+   PyTorch                                   2.2.2+cu118
+
+ Model size
+   Parameters (EF + LV function heads)       42.02 M
+   Parameters (full model, 39 heads)         42.06 M
+
+ Compute (one forward pass)
+   GFLOPs per clip (16 frames)               143.0
+   GFLOPs per video (4 clips)                572.0
+
+ Time (all seeds)
+   Model time per video                      144.9 ms median | 146.1 ms mean (n=954)
+   Wall time per video (with decoding)       193.2 ms
+   Time per seed                             3.1 min, 4.3 min, 4.9 min
+
+ GPU memory
+   Peak allocated (inference)                0.87 GB
+
+ Saved: reproduction\results\zeroshot\{summary.txt, summary.csv, complexity.txt, run.log, seed_*/}

@@ -1,0 +1,12 @@
+ PanEcho zero-shot, EchoNet-Dynamic test split (N=1,277), mean +/- SD across seeds 0, 1, 2
+
+ Metric                                   Mean +/- SD    seed 0    seed 1    seed 2
+ ----------------------------------------------------------------------------------
+ EF MAE (EF points)                     5.63 +/- 0.04      5.62      5.60      5.67
+ EF RMSE (EF points)                    7.93 +/- 0.04      7.94      7.88      7.95
+ EF R^2                               0.580 +/- 0.004     0.578     0.584     0.577
+ EF bias (pred - true)                  1.57 +/- 0.06      1.53      1.63      1.54
+ EF<40 AUROC, LV function head        0.922 +/- 0.002     0.920     0.924     0.922
+ EF<40 AP,    LV function head        0.736 +/- 0.004     0.739     0.738     0.731
+ EF<40 AUROC, predicted EF            0.919 +/- 0.002     0.917     0.920     0.920
+ EF<40 AP,    predicted EF            0.732 +/- 0.006     0.737     0.733     0.726

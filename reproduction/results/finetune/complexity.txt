@@ -1,0 +1,27 @@
+ Hardware
+   GPU                                       NVIDIA GeForce RTX 3070 Laptop GPU
+   CUDA                                      11.8
+   PyTorch                                   2.2.2+cu118
+
+ Model size
+   Parameters (EF head)                      42.02 M
+   Trainable parameters                      42.01 M
+
+ Compute
+   Forward GFLOPs per clip (16 frames)       143.0
+   Forward GFLOPs per test video (4 clips)   572.0
+   Training-step GFLOPs per video            429.0 (forward + backward, 1 clip)
+
+ Fine-tuning time (all seeds)
+   Time per batch (4 videos)                 654.7 ms median | 623.8 ms mean (n=11190)
+   Time per epoch (train + val)              25.3 min mean
+   Fine-tuning time per seed                 49.2 min, 51.0 min, 51.4 min
+
+ Test inference time (all seeds)
+   Model time per video                      184.1 ms median | 181.9 ms mean (n=954)
+   Wall time per video (with decoding)       239.6 ms
+
+ GPU memory (max over seeds)
+   Peak allocated (training)                 4.41 GB
+   Peak allocated (test inference)           1.20 GB
+

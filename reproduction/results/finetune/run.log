@@ -1,0 +1,105 @@
+================================================================
+ PanEcho fine-tuning: EchoNet-Dynamic EF
+================================================================
+ Data              train 7,465 | val 1,288 | test 1,277 videos
+ Seeds             0, 1, 2
+ Epochs            2
+ Batch             4 x 32 accumulated = 128 videos/step
+ Optimizer         Adam, lr 0.0001, no weight decay
+ Loss              MSE / train mean EF (55.78)
+ Clips (val/test)  4 x 16 frames
+ Precision         float16 (autocast + GradScaler)
+ Bootstrap         1000 resamples
+ Output            reproduction\results\finetune
+ GPU               NVIDIA GeForce RTX 3070 Laptop GPU
+ CUDA              11.8
+ PyTorch           2.2.2+cu118
+----------------------------------------------------------------
+ Measuring model size and FLOPs...
+
+ Seed 0
+----------------------------------------------------------------
+ Epoch 1/2 | train loss 0.9453 | val loss 0.7005 | val MAE 4.57 | 21.1 min | saved best
+ Epoch 2/2 | train loss 0.7514 | val loss 0.7735 | val MAE 4.79 | 28.1 min
+
+ Test split, best epoch 1 (N=1,277)
+ Metric                               Value   95% CI
+ --------------------------------------------------------------
+ EF MAE (EF points)                    4.66   [4.44, 4.92]
+ EF RMSE (EF points)                   6.35   [5.98, 6.72]
+ EF R^2                               0.731   [0.693, 0.763]
+ EF bias (pred - true)                -0.05   [-0.41, 0.31]
+ EF<40 AUROC, predicted EF            0.962   [0.946, 0.975]
+ EF<40 AP,    predicted EF            0.837   [0.784, 0.880]
+
+ Seed 1
+----------------------------------------------------------------
+ Epoch 1/2 | train loss 0.9680 | val loss 0.7241 | val MAE 4.84 | 25.7 min | saved best
+ Epoch 2/2 | train loss 0.7394 | val loss 0.7069 | val MAE 4.78 | 25.3 min | saved best
+
+ Test split, best epoch 2 (N=1,277)
+ Metric                               Value   95% CI
+ --------------------------------------------------------------
+ EF MAE (EF points)                    4.65   [4.41, 4.90]
+ EF RMSE (EF points)                   6.27   [5.89, 6.71]
+ EF R^2                               0.737   [0.703, 0.767]
+ EF bias (pred - true)                 0.13   [-0.18, 0.48]
+ EF<40 AUROC, predicted EF            0.965   [0.952, 0.977]
+ EF<40 AP,    predicted EF            0.840   [0.790, 0.888]
+
+ Seed 2
+----------------------------------------------------------------
+ Epoch 1/2 | train loss 1.0137 | val loss 0.7155 | val MAE 4.62 | 25.8 min | saved best
+ Epoch 2/2 | train loss 0.7417 | val loss 0.7076 | val MAE 4.64 | 25.6 min | saved best
+
+ Test split, best epoch 2 (N=1,277)
+ Metric                               Value   95% CI
+ --------------------------------------------------------------
+ EF MAE (EF points)                    4.64   [4.44, 4.88]
+ EF RMSE (EF points)                   6.25   [5.87, 6.62]
+ EF R^2                               0.739   [0.706, 0.769]
+ EF bias (pred - true)                 0.41   [0.07, 0.75]
+ EF<40 AUROC, predicted EF            0.967   [0.955, 0.976]
+ EF<40 AP,    predicted EF            0.847   [0.796, 0.889]
+
+ Summary: mean +/- SD across 3 seeds
+----------------------------------------------------------------
+ Metric                                   Mean +/- SD    seed 0    seed 1    seed 2
+ ----------------------------------------------------------------------------------
+ EF MAE (EF points)                     4.65 +/- 0.01      4.66      4.65      4.64
+ EF RMSE (EF points)                    6.29 +/- 0.05      6.35      6.27      6.25
+ EF R^2                               0.735 +/- 0.004     0.731     0.737     0.739
+ EF bias (pred - true)                  0.16 +/- 0.23     -0.05      0.13      0.41
+ EF<40 AUROC, predicted EF            0.965 +/- 0.003     0.962     0.965     0.967
+ EF<40 AP,    predicted EF            0.841 +/- 0.005     0.837     0.840     0.847
+
+ Complexity
+----------------------------------------------------------------
+ Hardware
+   GPU                                       NVIDIA GeForce RTX 3070 Laptop GPU
+   CUDA                                      11.8
+   PyTorch                                   2.2.2+cu118
+
+ Model size
+   Parameters (EF head)                      42.02 M
+   Trainable parameters                      42.01 M
+
+ Compute
+   Forward GFLOPs per clip (16 frames)       143.0
+   Forward GFLOPs per test video (4 clips)   572.0
+   Training-step GFLOPs per video            429.0 (forward + backward, 1 clip)
+
+ Fine-tuning time (all seeds)
+   Time per batch (4 videos)                 654.7 ms median | 623.8 ms mean (n=11190)
+   Time per epoch (train + val)              25.3 min mean
+   Fine-tuning time per seed                 49.2 min, 51.0 min, 51.4 min
+
+ Test inference time (all seeds)
+   Model time per video                      184.1 ms median | 181.9 ms mean (n=954)
+   Wall time per video (with decoding)       239.6 ms
+
+ GPU memory (max over seeds)
+   Peak allocated (training)                 4.41 GB
+   Peak allocated (test inference)           1.20 GB
+
+ Saved: reproduction\results\finetune\{summary.txt, summary.csv, complexity.txt, run.log, seed_*/}

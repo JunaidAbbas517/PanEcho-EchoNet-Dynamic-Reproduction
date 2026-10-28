@@ -1,0 +1,10 @@
+ PanEcho fine-tuned (2 epochs, best epoch 2), EchoNet-Dynamic test split (N=1,277), seed 2
+
+ Metric                               Value   95% CI
+ --------------------------------------------------------------
+ EF MAE (EF points)                    4.64   [4.44, 4.88]
+ EF RMSE (EF points)                   6.25   [5.87, 6.62]
+ EF R^2                               0.739   [0.706, 0.769]
+ EF bias (pred - true)                 0.41   [0.07, 0.75]
+ EF<40 AUROC, predicted EF            0.967   [0.955, 0.976]
+ EF<40 AP,    predicted EF            0.847   [0.796, 0.889]
